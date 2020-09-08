@@ -5,6 +5,8 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
+const PORT = 3000
+
 const FPS = 18;
 const wCap = new cv.VideoCapture(0);
 //wCap.set(cv.CAP_PROP_FRAME_WIDTH, 300);
@@ -20,4 +22,6 @@ setInterval(() => {
 		io.emit('image',image);
 }, 1000 / FPS)
 
-server.listen(3000);
+server.listen(PORT);
+
+console.log('listening on port '+PORT)
