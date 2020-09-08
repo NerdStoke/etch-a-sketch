@@ -3,12 +3,12 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
-const io = requre('socket.io')(server);
+const io = require('socket.io')(server);
 
 const FPS = 18;
 const wCap = new cv.VideoCapture(0);
-wCap.set(cv.CAP_PROP_FRAME_WIDTH, 300);
-wCap.set(cv.CAP_PROP_FRAME_HEIGHT, 300);
+//wCap.set(cv.CAP_PROP_FRAME_WIDTH, 300);
+//wCap.set(cv.CAP_PROP_FRAME_HEIGHT, 300);
 
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, 'index.html'));
@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 
 setInterval(() => {
 		const frame = wCap.read();
-		const image = csv.imencode('.jpg',frame).toString('base64');
+		const image = cv.imencode('.jpg',frame).toString('base64');
 		io.emit('image',image);
 }, 1000 / FPS)
 
