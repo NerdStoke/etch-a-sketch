@@ -31,13 +31,7 @@ let defaultKeyMap = config.keymap || {
   up: "Up",
   left: "Left",
   down: "Down",
-  right: "Right",
-  a: "a",
-  b: "b",
-  x: "x",
-  y: "y",
-  start: "s",
-  select: "e",
+  right: "Right"
 };
 
 function sendKey(command) {
@@ -55,6 +49,9 @@ function sendKey(command) {
       }
     }
     if (allowKey) {
+
+      // BEGIN REPLACE THE BELOW SECTION WITH GPIO COMMANDS
+
       if (isWindows) {
         //use python on windows
         // "VisualBoyAdvance"
@@ -71,6 +68,9 @@ function sendKey(command) {
             key
         );
       }
+
+      // END REPLACE WITH GPIO COMMANDS
+
     }
   }
 }
