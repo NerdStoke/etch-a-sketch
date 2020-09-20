@@ -1,8 +1,9 @@
 # etch-a-sketch
 
 This is the code that runs on the Raspberry Pi.
-It is a node app and I use pm2 to keep it up and running 
-If you are wondering why I use a cloud server to talk to the pi instead of funneling user traffic straight to it, it is becuase I don't know how many people would be connecting to it at a time. This way, there is only one point of connection to the pi and one source of commands foing to to the GPIOs
+It is a node app and I use pm2 to keep it up and running.
+It also executes a little python,
+If you are wondering why I listen to twitch to send commands to the pi instead of funneling user traffic straight to it through a web server or something, it is because I don't know how many people would be connecting to it at a time. This way, there is only one point of connection to the pi and one source of commands going to to the GPIOs
 
 
 ## Node Requirements
@@ -13,11 +14,14 @@ Just use npm to install these...
 - `pm2`
 
 
-### Setting up port forwarding
-Honestly, you are going to have to google this for yourself.  
-Depending on your ISP and router, it is all going to be different.  
-Just use port 80 and TCP where prompted.
+## Python Requirements
+- I am using 3.7, but I think it is flexible.
+- The only external requirement now is another repo that I am working on for the Pi. It can be pip installed with `pip install git+https://github.com/nerdstoke/raspiGPIOext.git#egg=measurements`
 
-### Configuring ports on Raspberry Pi
-if you used port 80, then - on your raspberry pi - you need to redirect traffic from port 80 to port 3000
-`sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000`
+
+## Configuration
+- After everything is installed, it is just a matter of changing the twitch channel in the `config.js` file
+
+
+## Running
+- Run it with `node server.js` or if you are using pm2, `pm2 server.js`
