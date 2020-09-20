@@ -17,7 +17,7 @@ client.on("message", function (channel, tags, message, self) {
   let messageMatches = message.match(/\-?\d+/g);
 
   if (self) return;
-  if (isCorrectChannel && messageMatches) {
+  if (isCorrectChannel && messageMatches[0] && messageMatches[1]) {
     let python_command = "python3 etch.py "+messageMatches[0]+" "+messageMatches[1]
     // console.log(python_command)
     // console.log(`@${tags.username}: ${message}`);
