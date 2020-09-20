@@ -1,7 +1,7 @@
 const tmi = require("tmi.js");
 const keyHandler = require("./keyHandler.js");
 const config = require("./config.js");
-let exec = require("child_process").exec,
+let exec = require("child_process").exec;
 
 // https://github.com/tmijs/tmi.js#tmijs
 // for more options
@@ -18,12 +18,14 @@ const client = new tmi.client({
 //   new RegExp("^(" + config.commands.join("|") + ")$", "i");
 
 client.on("message", function (channel, tags, message, self) {
-  // let isCorrectChannel = `#${config.channel}` === channel;
+  let isCorrectChannel = `#${config.channel}` === channel;
   // let messageMatches = message.match(commandRegex);
   let messageMatches = message.match(/\-?\d+/g);
 
   if (self) return;
   if (isCorrectChannel && messageMatches) {
+    let python_command = "python3 etch.py "+messageMatches[0]+" "+messageMatches[1]
+    console.log(python_command)
     exec("python3 etch.py "+messageMatches[0]+" "+messageMatches[1])
 
     // print username and message to console
