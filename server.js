@@ -1,6 +1,7 @@
 const tmi = require("tmi.js");
 const keyHandler = require("./keyHandler.js");
 const config = require("./config.js");
+let exec = require("child_process").exec,
 
 // https://github.com/tmijs/tmi.js#tmijs
 // for more options
@@ -12,21 +13,24 @@ const client = new tmi.client({
   channels: [config.channel],
 });
 
-const commandRegex =
-  config.regexCommands ||
-  new RegExp("^(" + config.commands.join("|") + ")$", "i");
+// const commandRegex =
+//   config.regexCommands ||
+//   new RegExp("^(" + config.commands.join("|") + ")$", "i");
 
 client.on("message", function (channel, tags, message, self) {
-  let isCorrectChannel = `#${config.channel}` === channel;
-  let messageMatches = message.match(commandRegex);
+  // let isCorrectChannel = `#${config.channel}` === channel;
+  // let messageMatches = message.match(commandRegex);
+  let messageMatches = message.match(/\-?\d+/g);
 
   if (self) return;
   if (isCorrectChannel && messageMatches) {
+    exec("python3 etch.py "+messageMatches[0]+" "+messageMatches[1])
+
     // print username and message to console
     console.log(`@${tags.username}: ${message}`);
 
     // send the message to the emulator
-    keyHandler.sendKey(message.toLowerCase());
+    // keyHandler.sendKey(message.toLowerCase());
   }
 });
 
