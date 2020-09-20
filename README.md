@@ -1,16 +1,15 @@
 # etch-a-sketch
 
-This is the code that runs on the Raspberry Pi.
-It is a node app and I use pm2 to keep it up and running.
-It also executes a little python,
-If you are wondering why I listen to twitch to send commands to the pi instead of funneling user traffic straight to it through a web server or something, it is because I don't know how many people would be connecting to it at a time. This way, there is only one point of connection to the pi and one source of commands going to to the GPIOs
+This is the code that runs on the Raspberry Pi.  
+Inspired by [hzoo](https://github.com/hzoo/TwitchPlaysX).  
+It is a node app and I use pm2 to keep it up and running.  
+It also executes a little python.  
+If you are wondering why I listen to twitch to send commands to the pi instead of funneling user traffic straight to it through a web server or something, it is because I don't know how many people would be connecting to it at a time. This way, there is only one point of connection to the pi and one source of commands going to the GPIOs
 
 
 ## Node Requirements
 Just use npm to install these...
-- `socket.io`
-- `opencv4nodejs`
-- `express`
+- `tmi`
 - `pm2`
 
 
