@@ -1,5 +1,4 @@
 const tmi = require("tmi.js");
-const keyHandler = require("./keyHandler.js");
 const config = require("./config.js");
 let exec = require("child_process").exec;
 
@@ -21,10 +20,8 @@ client.on("message", function (channel, tags, message, self) {
   if (isCorrectChannel && messageMatches) {
     let python_command = "python3 etch.py "+messageMatches[0]+" "+messageMatches[1]
     // console.log(python_command)
-    exec("python3 etch.py "+messageMatches[0]+" "+messageMatches[1])
-
-    // print username and message to console
     // console.log(`@${tags.username}: ${message}`);
+    exec(python_command)
   }
 });
 

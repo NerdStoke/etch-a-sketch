@@ -1,30 +1,17 @@
 // change these two variables
 let channel = process.env.TWITCH_CHANNEL || "nerdstoke";
-let programName =
-  process.env.CONFIG_PROGRAM_NAME || "Untitled 1 - Mousepad";
-  
-// List of commands to check for
-let commands = [
-  "left",
-  "right",
-  "up",
-  "down",
-];
 
 let filteredCommands = [
   "democracy",
   "anarchy",];
+
 let throttledCommands = [
   "shake",
 ];
 
 module.exports = {
-  // all commands to print out
-  commands,
   // twitch channel to connect to
   channel,
-  // Title of the window of the program (ex: 'Desmume' or 'VBA')
-  programName,
 
   // If you need to filter the commands sent to the program
   // Ex: democracy/anarchy since they don't affect the program itself
