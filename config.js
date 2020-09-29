@@ -23,10 +23,9 @@ module.exports = {
   throttledCommands,
 
   // Throttle time in seconds
-  // Ex: you can limit 'shake' so it's only used every 10 sec
+  // Ex: you can limit 'shake' so it's only used once per day
   timeToWait: 86400000,
 
-  // Delay between each possible keypress in milliseconds (can't be too fast)
-  // To change on Windows, change `key.py`
-  delay: 5000,
+  // Delay between each knob turns in milliseconds so it can collect and average the inputs
+  aggTime: 10000,
 };
