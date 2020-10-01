@@ -38,7 +38,7 @@ BITRATE=3500000
 URL="rtmp://live.twitch.tv/app/"
 
 # Set stream key
-source key.conf
+source "key.conf"
 KEY=$STREAM_KEY
 
 # Command
