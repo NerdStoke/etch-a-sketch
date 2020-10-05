@@ -19,16 +19,17 @@ const client = new tmi.client({
 var leftArray = [];
 var rghtArray = [];
 
-
 // add to arrays when valid message is sent
 client.on("message", function aggCommands(channel, tags, message, self) {
   // console.log(`@${tags.username}: ${message}`);
   let isCorrectChannel = `#${config.channel}` === channel;
   let messageMatches = message.match(/\-?\d+/g);
   if (self) return;
-  if (isCorrectChannel && messageMatches[0] && messageMatches[1]) {
-    leftArray.push(parseInt(messageMatches[0]));
-    rghtArray.push(parseInt(messageMatches[1]));
+  if (messageMatches != null) {
+    if (isCorrectChannel && messageMatches[0] && messageMatches[1]) {
+      leftArray.push(parseInt(messageMatches[0]));
+      rghtArray.push(parseInt(messageMatches[1]));
+    }
   }
 });
 
@@ -39,12 +40,12 @@ function execPython(){
 
     var leftCmd = String(average(leftArray));
     var rghtCmd = String(average(rghtArray));
-    
+
     let python_command = "python3 etch.py "+leftCmd+" "+rghtCmd
     // console.log(python_command)
 
     exec(python_command)
-    
+
     // reset arrays
     leftArray = [];
     rghtArray = [];
