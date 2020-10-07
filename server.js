@@ -27,8 +27,8 @@ client.on("message", function aggCommands(channel, tags, message, self) {
   if (self) return;
   if (messageMatches != null) {
     if (isCorrectChannel && messageMatches[0] && messageMatches[1]) {
-      leftArray.push(parseInt(messageMatches[0]));
-      rghtArray.push(parseInt(messageMatches[1]));
+      leftArray.push(limit_degree(messageMatches[0]));
+      rghtArray.push(limit_degree(messageMatches[1]));
     }
   }
 });
@@ -42,7 +42,7 @@ function execPython(){
     var rghtCmd = String(average(rghtArray));
 
     let python_command = "python3 etch.py "+leftCmd+" "+rghtCmd
-    // console.log(python_command)
+    console.log(python_command)
 
     exec(python_command)
 
@@ -53,7 +53,7 @@ function execPython(){
 };
 
 
-// comand averaging function
+// command averaging function
 function average(array){
   var total = 0;
   for(var i = 0; i < array.length; i++) {
@@ -61,6 +61,20 @@ function average(array){
   }
   return total / array.length;
 };
+
+
+// limit the numer of degrees per command from -360 to 360
+function limit_degree(deg){
+  if (Math.abs(deg) <= 360){
+    return parseInt(deg);
+  } else if (deg > 0){
+    return 360;
+  } else {
+    return -360;
+  }
+};
+    
+
 
 
 // run the python command in intervals defined in config file

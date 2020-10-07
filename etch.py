@@ -11,5 +11,5 @@ rght = rght if abs(rght) <= 360. else (360. if rght > 0 else -360.)
 def run_stepper(pins,angle,speed):
     Stepper_ROHS_28BYJ48(pins).move_by_angle(angle=angle,speed=speed)
 
-Thread(target=run_stepper, args=([4,17,27,22],left,3.5)).start()
-Thread(target=run_stepper, args=([12,16,20,21],rght,3.5)).start()
+Thread(target=run_stepper, args=([12,16,20,21],left,3.5)).start()
+Thread(target=run_stepper, args=([4,17,27,22],rght,3.5)).start()
