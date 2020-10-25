@@ -22,13 +22,15 @@ var rghtArray = [];
 // add to arrays when valid message is sent
 client.on("message", function aggCommands(channel, tags, message, self) {
   // console.log(`@${tags.username}: ${message}`);
-  let isCorrectChannel = `#${config.channel}` === channel;
-  let messageMatches = message.match(/\-?\d+/g);
-  if (self) return;
-  if (messageMatches != null) {
-    if (isCorrectChannel && messageMatches[0] && messageMatches[1]) {
-      leftArray.push(limit_degree(messageMatches[0]));
-      rghtArray.push(limit_degree(messageMatches[1]));
+  if (tags.username.toLowerCase() != "streamelements") {
+    let isCorrectChannel = `#${config.channel}` === channel;
+    let messageMatches = message.match(/\-?\d+/g);
+    if (self) return;
+    if (messageMatches != null) {
+      if (isCorrectChannel && messageMatches[0] && messageMatches[1]) {
+        leftArray.push(limit_degree(messageMatches[0]));
+        rghtArray.push(limit_degree(messageMatches[1]));
+      }
     }
   }
 });

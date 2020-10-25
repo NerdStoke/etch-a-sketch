@@ -1,5 +1,5 @@
 // change these two variables
-let channel = process.env.TWITCH_CHANNEL || "nerdstoke";
+let channel = process.env.TWITCH_CHANNEL || "nerdstokeirl";
 
 let filteredCommands = [
   "democracy",
@@ -7,6 +7,10 @@ let filteredCommands = [
 
 let throttledCommands = [
   "shake",
+];
+
+let blockedUsers = [
+  "streamelements",
 ];
 
 module.exports = {
@@ -27,5 +31,8 @@ module.exports = {
   timeToWait: 86400000,
 
   // Delay between each knob turns in milliseconds so it can collect and average the inputs
-  aggTime: 10000,
+  aggTime: 5000,
+
+  // Mostly for StreamElements
+  blockedUsers,
 };
