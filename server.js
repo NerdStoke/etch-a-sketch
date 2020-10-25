@@ -93,9 +93,7 @@ client.addListener("disconnected", function (reason) {
 
 client.connect();
 if (config.channel === 'nerdstoke') {
-  console.log("");
-  console.log("'nerdstoke' is the default channel! Otherwise, run with the environment variable: ");
-  console.log("TWITCH_CHANNEL=mychannelhere npm start");
-  console.log("");
+  console.log("\n'nerdstoke' is the default channel! Otherwise, run with the environment variable: ");
+  console.log("TWITCH_CHANNEL=mychannelhere npm start\n");
 }
 console.log(`Connecting to /${config.channel}..`);
